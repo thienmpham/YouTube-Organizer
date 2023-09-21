@@ -101,13 +101,93 @@ form button {
     width: 80%;
 }
 
-/* <main> styling  */
+/* <MAIN> STYLING */
 
 main { 
     flex: 1;
-    padding: 0 1rem;
+    padding: 0.4rem 1rem;
 }
 
+/* video tab styling */
+.main-content-tab  { 
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.main-content-tab img { 
+    justify-content: space-evenly;
+}
+
+.video-tab img { 
+    display: flex;
+    width: 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem;
+   
+}
+
+.video-tab button {
+    padding: 0.4rem;
+}
+.video-list-tab {
+    display: flex;
+    margin: 0.5rem 0 0.5rem 0;
+    
+}
+.video-list-tab img { 
+    width: 14px;
+  
+
+}
+
+.video-list-tab button { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border: 0.2rem solid;
+    border-radius: 0.1rem;
+    border-color: #F0F0F0;
+    
+}
+
+.video-tab {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    background-color: white;
+    border-radius: 0.2rem;
+    padding: 0.4rem 0.6rem;
+    box-shadow: 0 0.1rem 0.1rem 0.1rem #B5B5B5;
+}
+.tab-name { 
+    text-align: center;
+    vertical-align: middle; 
+    padding: 0 0 1rem 0;
+}
+.tab-name span { 
+    font-size: 0.8rem;
+}
+
+.icon-tab { 
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.icon-tab img{ 
+    margin: 0;
+    padding: 0;
+}
+
+
+
+#x-icon { 
+    width: 23px;
+}
 
 
 /* GLOBAL STYLING */
@@ -116,4 +196,6 @@ button {
     border: none;
     color: none;
     background: none;
+    margin: 0;
+    padding: 0;
 }
