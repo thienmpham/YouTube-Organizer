@@ -1,8 +1,13 @@
 body {
-    background-color: lightgray;
+    background-color: #F0F0F0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
     
 }
+
+/* HEADER STYLING */
 
 .fixed-header {
     display: flex;
@@ -10,6 +15,8 @@ body {
     padding: 1rem;
     position: static;
     height: 3rem;
+    width:100%;
+    box-shadow: 0 0.1rem 0.5rem 0.1rem #B5B5B5;
 }
 
 :root {
@@ -17,12 +24,96 @@ body {
     font-family: sans-serif;
 }
 
+/* FOOTER STYLING */
 
-.bottom {
-    position: absolute;
-    bottom: 0;
+/* search bar styling */
+footer { 
+    margin-top: auto;
+    box-shadow: 0 0.1rem 0.5rem 0.1rem #B5B5B5;
+    display: flex;
     background-color:white;
     padding: 1rem;
     width: 100%;
+    position: static;
     height: 3rem;
+}
+
+.fixed-footer{
+    width: 50%;
+    
+    margin-right: 5px;
+}
+
+
+#form-search {
+    display: flex; 
+    height: 100%;
+    border-radius: 0.5rem;
+    border-color: #F0F0F0;
+    border-style: solid;
+    
+    
+}
+form input { 
+    border: none;
+    outline: none;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+form button {
+    border: none;
+    color: none;
+    border-radius: 0.5rem;
+}
+#query { 
+    width: 100%; 
+    
+}
+
+#search-icon { 
+    filter: invert(99%) sepia(5%) saturate(408%) hue-rotate(107deg) brightness(116%) contrast(88%);
+    
+}
+
+/* icon buttons*/
+.icon-container {
+    display: flex;
+    
+    
+}
+
+
+.icon-container button { 
+    display: flex;
+    width: 55px;
+    height: 53px;
+    border-style: solid;
+    border-radius: 0.5rem;
+    border-color: #F0F0F0;
+    align-items: center;
+    justify-content: center;
+    align-content:space-evenly;
+    margin: 0 10px;
+    
+}
+.icon-container img { 
+    width: 80%;
+}
+
+/* <main> styling  */
+
+main { 
+    flex: 1;
+    padding: 0 1rem;
+}
+
+
+
+/* GLOBAL STYLING */
+
+button { 
+    border: none;
+    color: none;
+    background: none;
 }
