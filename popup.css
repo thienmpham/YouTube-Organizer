@@ -73,7 +73,7 @@ form button {
 
 #search-icon { 
     filter: invert(99%) sepia(5%) saturate(408%) hue-rotate(107deg) brightness(116%) contrast(88%);
-    
+    margin: 0.5rem;
 }
 
 /* icon buttons*/
@@ -157,7 +157,7 @@ main {
 .video-tab {
     display: flex;
     flex-direction: column;
-    width: fit-content;
+    width: 176px;
     background-color: white;
     border-radius: 0.2rem;
     padding: 0.4rem 0.6rem;
