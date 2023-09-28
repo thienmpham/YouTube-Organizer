@@ -118,8 +118,10 @@ function getChannel(auth) {
   }, function(err, response) {
     if (err) {
       console.log('The API returned an error: ' + err);
+      
       return;
     }
+    
     var channels = response.data.items;
     if (channels.length == 0) {
       console.log('No channel found.');
@@ -133,4 +135,3 @@ function getChannel(auth) {
   });
 }
 
-console.log(playlists.list );
