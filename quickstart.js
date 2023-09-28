@@ -132,3 +132,5 @@ function getChannel(auth) {
     }
   });
 }
+
+console.log(playlists.list );
