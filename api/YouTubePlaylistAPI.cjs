@@ -1,5 +1,4 @@
-const axios = require('axios');
-require('dotenv').config();
+require('dotenv').config({path:'/Users/thienmpham/Documents/Coding/Projects/Chrome Extensions /YouTube-Organizer/.env'})
 
 const apiKey = process.env.API_KEY; 
 
@@ -8,7 +7,8 @@ const part = 'snippet';
 const channelId = 'UCt1sWh7fALveC7cI4oQ6ZMg'
 
 const url = `${baseUrl}?part=${part}&channelId=${channelId}&key=${apiKey}`;
-console.log(url);
+
+export async function getYTPlaylist() {
 
  fetch(url)
     .then((response) => {
@@ -18,11 +18,11 @@ console.log(url);
 
         return response;
     }) .then((data) =>{
-        console.log(data)
-            console.log(data.items)
+        console.log(playlists)
+            
         
     })
-
+};
 // fetch(url)
 // .then((data) => {
 //     console.log(data)
