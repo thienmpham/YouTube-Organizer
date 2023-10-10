@@ -14,12 +14,13 @@ app.listen(port, () => console.log(`Server has started on ${port}`))
 app.get('/', (req, res) => res.json('Hello World'))
 
 
-app.get('/results', (req, res) => {
-    const fetchData = () => {
-        fetch(url)
-        .then((result) => result.json()) // convert response into json format
-        .then((data) => console.log(data))
-        
-    }  
-    res.send(fetchData)
+app.get('/api', (req, res) => {
+   const fetchData = () => {
+    fetch(url)
+        // .then((res) => res.json()) // convert response into json format
+        .then((res) => console.log(res))
+    }
+    res.json()
 })
+
+
