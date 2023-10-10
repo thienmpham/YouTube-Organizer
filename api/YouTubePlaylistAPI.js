@@ -1,5 +1,6 @@
 require('dotenv').config({path:'/Users/thienmpham/Documents/Coding/Projects/Chrome Extensions /YouTube-Organizer/.env'})
 
+const axios = require('axios')
 const express = require('express');
 const app = express();
 const port = 8000;
@@ -14,13 +15,31 @@ app.listen(port, () => console.log(`Server has started on ${port}`))
 app.get('/', (req, res) => res.json('Hello World'))
 
 
-app.get('/api', (req, res) => {
-   const fetchData = () => {
+const fetchData = (handler) => {
     fetch(url)
+    .then((res) => res.json()) // convert response into json format
+    .then(data => {
+        var a = [];
+        a.push(data);
+        handler(a);
+      
+    }) 
+}
+console.log(handler)
+
+app.get('/api', (req, res) => {
+
+    // fetch(url)
         // .then((res) => res.json()) // convert response into json format
-        .then((res) => console.log(res))
-    }
-    res.json()
-})
+        // .then((res) => console.log(res))
+        // .then((res) => res.send(obj))
+        // .catch (error => console.log(error));
+
+    
+   
+     })
+
+
+
 
 
