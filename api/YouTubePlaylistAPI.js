@@ -1,8 +1,11 @@
 require('dotenv').config({path:'/Users/thienmpham/Documents/Coding/Projects/Chrome Extensions /YouTube-Organizer/.env'})
+const cors = require('cors')
+
 
 const axios = require('axios')
 const express = require('express');
 const app = express();
+app.use(cors());
 const port = 8000;
 
 const apiKey = process.env.API_KEY; 
@@ -14,29 +17,24 @@ app.listen(port, () => console.log(`Server has started on ${port}`))
 
 app.get('/', (req, res) => res.json('Hello World'))
 
+var obj;
 
-const fetchData = (handler) => {
-    fetch(url)
+// Fetching playlist data from YouTube API 
+fetch(url)
     .then((res) => res.json()) // convert response into json format
     .then(data => {
-        var a = [];
-        a.push(data);
-        handler(a);
-      
+        obj = data;   
     }) 
-}
-console.log(handler)
-
-app.get('/api', (req, res) => {
-
-    // fetch(url)
-        // .then((res) => res.json()) // convert response into json format
-        // .then((res) => console.log(res))
-        // .then((res) => res.send(obj))
-        // .catch (error => console.log(error));
-
+    .then (() => {
+        console.log(obj);
+    })
     
-   
+// Send fetch results to /api endpoint 
+// using express
+app.get('/api', (req, res) => {
+    res.json(obj);
+    
+
      })
 
 
