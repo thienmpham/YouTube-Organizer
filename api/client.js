@@ -15,15 +15,15 @@ const main = document.querySelector('#main');
 
 
 
-let appendVideoTab = () => {
-    //add empty div to <main>
-    main.append(div);
-    // Append empty div to cloned div 
-    div.append(videoTabClone);
-    console.log(div)
-}
+// let appendVideoTab = () => {
+//     //add empty div to <main>
+//     main.append(div);
+//     // Append empty div to cloned div 
+//     div.append(videoTabClone);
+//     console.log(div)
+// }
 
-appendVideoTab();
+
 
 // Fetching data from my endpoint to my client side 
 fetch('http://localhost:8000/api')
@@ -32,8 +32,21 @@ fetch('http://localhost:8000/api')
     })
     .then(data => {
         let playlists = data.items; 
-        for (const playlist of playlists) { 
-            console.log(playlist.snippet.title)
+        console.log(data);
+        
+        let tabName = document.querySelector('.tab-name');
+        for (var playlist of playlists) {
+            console.log(playlist)
+        }       
+        console.log(playlist.snippet.title)
+        for (let i = 0; i < playlists.length; i++) { 
+            // Create a node clone with each iteration 
+            let videoTabClone = videoTab.cloneNode(true);
+            // Append empty div to cloned div 
+            main.append(videoTabClone);
+            tabName.replaceWith(`${playlist.snippet.title}`)
+
+            
         }
         console.log(data);
     }).catch (error => {
