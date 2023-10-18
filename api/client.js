@@ -31,24 +31,32 @@ fetch('http://localhost:8000/api')
         return res.json();
     })
     .then(data => {
-        let playlists = data.items; 
         console.log(data);
-        
+
+        let playlists = data.items;
         let tabName = document.querySelector('.tab-name');
-        for (var playlist of playlists) {
-            console.log(playlist)
-        }       
-        console.log(playlist.snippet.title)
+        
         for (let i = 0; i < playlists.length; i++) { 
             // Create a node clone with each iteration 
             let videoTabClone = videoTab.cloneNode(true);
             // Append empty div to cloned div 
             main.append(videoTabClone);
-            tabName.replaceWith(`${playlist.snippet.title}`)
+            playlists.forEach((curr) => {
+                playlistTitle = curr.snippet.title;
+                if(playlistTitle[i] == playlistTitle[0]){
+                    tabName.replaceWith(`${(playlistTitle[0])}`)
+                    i++;
+                    console.log(playlistTitle);
+                }
+                else {
 
+                }
+            })
+            // tabName.replaceWith(`${(playlists[i].snippet.title)}`)
+           
             
         }
-        console.log(data);
+        
     }).catch (error => {
         (console.log(error));
     });
