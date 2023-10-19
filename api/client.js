@@ -1,5 +1,5 @@
 let div = document.createElement('div');
-
+let h1 = document.createElement('h1');
 // Select the tab div 
 const videoTab = document.querySelector('.video-tab');
 console.log(videoTab)
@@ -32,7 +32,7 @@ fetch('http://localhost:8000/api')
     })
     .then(data => {
         console.log(data);
-
+        
         let playlists = data.items;
         let tabName = document.querySelector('.tab-name');
         
@@ -41,18 +41,16 @@ fetch('http://localhost:8000/api')
             let videoTabClone = videoTab.cloneNode(true);
             // Append empty div to cloned div 
             main.append(videoTabClone);
-            playlists.forEach((curr) => {
-                playlistTitle = curr.snippet.title;
-                if(playlistTitle[i] == playlistTitle[0]){
-                    tabName.replaceWith(`${(playlistTitle[0])}`)
-                    i++;
-                    console.log(playlistTitle);
-                }
-                else {
+            
 
-                }
-            })
-            // tabName.replaceWith(`${(playlists[i].snippet.title)}`)
+            tabName = '';
+            h1.innerHTML = playlists[i].snippet.title;
+            tabName.append(h1);
+            console.log(tabName)
+            // tabName.replaceWith(playlists[i].snippet.title);
+ 
+            console.log(playlists[i].snippet.title)
+               
            
             
         }
