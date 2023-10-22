@@ -3,15 +3,18 @@ let h1 = document.createElement('h1');
 let tabName = document.querySelector('.tab-name');
 let tabNameSpan = document.querySelector('#tab-name-span')
 
+
 // Select the tab div 
 const videoTab = document.querySelector('.video-tab');
 console.log(videoTab)
 
 // Create node clone of tab div 
-let videoTabClone = videoTab.cloneNode(true);
-console.log(videoTabClone);
-// Assign class so I can target the cloned div whenever neccessary 
-videoTabClone.id = 'videoClone';
+// let videoTabClone = videoTab.cloneNode(true);
+ // Assign class so I can target the cloned div whenever neccessary 
+//  videoTabClone.id = 'videoClone';
+// let tabNameSpanClone = document.querySelector('.videoTabClone#tab-name-span')
+// console.log(tabNameSpanClone);
+
 // Select <main> 
 const main = document.querySelector('#main');
 
@@ -42,19 +45,18 @@ fetch('http://localhost:8000/api')
         for (let i = 0; i < playlists.length; i++) { 
             // Create a node clone with each iteration 
             videoTabClone = videoTab.cloneNode(true);
-            // Append empty div to cloned div 
-            main.append(videoTabClone);
             
+            
+            // Append empty div to cloned div 
+            main.append(videoTabClone);     
+            videoTabClone.id = 'videoClone' + `${i + 1}`;
+            videoTabClone.className = 'videoTabClassClone'
+            // let tabNameSpanClone = document.querySelector('.videoTabClassClone #tab-name-span')
+            // console.log(tabNameSpanClone);
 
-            // tabName = '';
-            // h1.innerHTML = playlists[i].snippet.title;
-            // tabName.append(div);
             tabNameSpan.innerHTML = playlists[i].snippet.title;
-            console.log(tabName);
-            // tabName.replaceWith(playlists[i].snippet.title);
- 
             console.log(playlists[i].snippet.title)
-                 
+            
         }
    
     }).catch (error => {
