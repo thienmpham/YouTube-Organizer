@@ -12,27 +12,36 @@ const apiKey = process.env.API_KEY;
 const baseUrl = 'https://youtube.googleapis.com/youtube/v3/playlists';
 const part = 'snippet';
 const channelId = 'UCt1sWh7fALveC7cI4oQ6ZMg';
-const url = `${baseUrl}?part=${part}&channelId=${channelId}&key=${apiKey}`;
+const nextPageToken = 'CAUQAA';
+const maxResults = '50';
+const url = `${baseUrl}?part=${part}&channelId=${channelId}&maxResults=${maxResults}&pageToken=${nextPageToken}&key=${apiKey}`;
+const url2 =  `https://youtube.googleapis.com/youtube/v3/playlists?part=snippet&channelId=UCt1sWh7fALveC7cI4oQ6ZMg&maxResults=50&pageToken=CAUQAA&key=${apiKey}`
 app.listen(port, () => console.log(`Server has started on ${port}`))
 
+console.log(url)
 app.get('/', (req, res) => res.json('Hello World'))
 
 var obj;
 
 // Fetching playlist data from YouTube API 
-fetch(url)
+fetch(url, {
+    method: 'POST',
+    headers: {Authorization: Bearer `${apiKey} `}
+})
     .then((res) => res.json()) // convert response into json format
     .then(data => {
         obj = data;   
     }) 
     .then (() => {
         console.log(obj);
+       
     })
     
 // Send fetch results to /api endpoint 
 // using express
 app.get('/api', (req, res) => {
     res.json(obj);
+    console.log(nextPageToken)
     
 
      })
