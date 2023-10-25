@@ -8,6 +8,7 @@ const app = express();
 app.use(cors());
 const port = 8000;
 
+const access_token = process.env.ACCESS_TOKEN;
 const apiKey = process.env.API_KEY; 
 const baseUrl = 'https://youtube.googleapis.com/youtube/v3/playlists';
 const part = 'snippet';
@@ -23,7 +24,13 @@ app.get('/', (req, res) => res.json('Hello World'))
 var obj;
 
 // Fetching playlist data from YouTube API 
-fetch(url)
+fetch(url, { 
+    method: 'GET', 
+    headers: {
+        'Authorization': `Bearer ${access_token}`,
+        'Accept': 'application/json',
+    }
+})
     .then((res) => res.json()) // convert response into json format
     .then(data => {
         obj = data;   

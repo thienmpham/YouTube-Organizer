@@ -1,11 +1,4 @@
-const express = require('express')
-const app = express();
-
-
 require('dotenv').config();
-
-// var CLIENT_SECRET= process.env.CLIENT_SECRET;
-// var CLIENT_ID= process.env.CLIENT_ID;
 
 var fs = require('fs');
 var readline = require('readline');
@@ -23,12 +16,12 @@ var TOKEN_PATH = TOKEN_DIR + 'youtube-nodejs-quickstart.json';
 fs.readFile('client_secret.json', function processClientSecrets(err, content) {
   if (err) {
     console.log('Error loading client secret file: ' + err);
+    
     return;
   }
   // Authorize a client with the loaded credentials, then call the YouTube API.
   authorize(JSON.parse(content), getChannel);
 });
-
 
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
@@ -65,7 +58,10 @@ function authorize(credentials, callback) {
 function getNewToken(oauth2Client, callback) {
   var authUrl = oauth2Client.generateAuthUrl({
     access_type: 'offline',
-    scope: SCOPES
+    
+    scope: SCOPES, 
+    // Enable incremental authorization. Recommended as a best practice.
+    include_granted_scopes: true
   });
   console.log('Authorize this app by visiting this url: ', authUrl);
   var rl = readline.createInterface({
@@ -82,6 +78,7 @@ function getNewToken(oauth2Client, callback) {
       oauth2Client.credentials = token;
       storeToken(token);
       callback(oauth2Client);
+      
     });
   });
 }
@@ -119,10 +116,8 @@ function getChannel(auth) {
   }, function(err, response) {
     if (err) {
       console.log('The API returned an error: ' + err);
-      
       return;
     }
-    
     var channels = response.data.items;
     if (channels.length == 0) {
       console.log('No channel found.');
@@ -136,3 +131,57 @@ function getChannel(auth) {
   });
 }
 
+
+// const fs = require('fs');
+// const readline = require('readline');
+// const {
+//   google
+// } = require('googleapis');
+
+// const SCOPES = ['https://www.googleapis.com/auth/youtube.readonly'];
+// const TOKEN_PATH = 'token.json';
+
+// fs.readFile('client_secret.json', (err, content) => {
+//   if (err) return console.log('Error loading client secret file:', err);
+//   authorize(JSON.parse(content));
+// });
+
+// function authorize(credentials, callback) {
+  
+//   var clientSecret = process.env.CLIENT_SECRET;
+//   var clientId = process.env.CLIENT_ID;
+//   var redirectUrl = 'http://127.0.0.1:5500/YouTube-Organizer/popup.html';
+//   const oAuth2Client = new google.auth.OAuth2(
+//     clientId, clientSecret, redirectUrl);
+
+//   fs.readFile(TOKEN_PATH, (err, token) => {
+//     if (err) return getNewToken(oAuth2Client, callback);
+//     oAuth2Client.setCredentials(JSON.parse(token));
+//     callback(oAuth2Client);
+//   });
+// }
+
+// function getNewToken(oAuth2Client, callback) {
+//   const authUrl = oAuth2Client.generateAuthUrl({
+//     access_type: 'offline',
+//     scope: SCOPES,
+//   });
+//   console.log('Authorize this app by visiting this url:', authUrl);
+//   const rl = readline.createInterface({
+//     input: process.stdin,
+//     output: process.stdout,
+//   });
+//   rl.question('Enter the code from that page here: ', (code) => {
+//     rl.close();
+//     oAuth2Client.getToken(code, (err, token) => {
+//       if (err) return console.error(
+//         'Error while trying to retrieve access token', err);
+//       oAuth2Client.setCredentials(token);
+//       fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
+//         if (err) return console.error(err);
+//         console.log('Token stored to', TOKEN_PATH);
+//       });
+//       callback(oAuth2Client);
+//     });
+//   });
+// }

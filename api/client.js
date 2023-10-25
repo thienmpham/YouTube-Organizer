@@ -21,16 +21,6 @@ const main = document.querySelector('#main');
 
 
 
-// let appendVideoTab = () => {
-//     //add empty div to <main>
-//     main.append(div);
-//     // Append empty div to cloned div 
-//     div.append(videoTabClone);
-//     console.log(div)
-// }
-
-
-
 // Fetching data from my endpoint to my client side 
 fetch('http://localhost:8000/api')
     .then(res => {
