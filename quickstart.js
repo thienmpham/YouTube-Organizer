@@ -29,12 +29,15 @@ fs.readFile('client_secret.json', function processClientSecrets(err, content) {
  * @param {Object} credentials The authorization client credentials.
  * @param {function} callback The callback to call with the authorized client.
  */
+
+
 function authorize(credentials, callback) {
   var clientSecret = process.env.CLIENT_SECRET;
   var clientId = process.env.CLIENT_ID;
   var redirectUrl = 'http://127.0.0.1:5500/YouTube-Organizer/popup.html';
   var oauth2Client = new OAuth2(clientId, clientSecret, redirectUrl);
-
+  
+  
   // Check if we have previously stored a token.
   fs.readFile(TOKEN_PATH, function(err, token) {
     if (err) {
@@ -43,6 +46,7 @@ function authorize(credentials, callback) {
       oauth2Client.credentials = JSON.parse(token);
       callback(oauth2Client);
     }
+     
   });
 }
 
@@ -57,7 +61,7 @@ function authorize(credentials, callback) {
 function getNewToken(oauth2Client, callback) {
   var authUrl = oauth2Client.generateAuthUrl({
     access_type: 'offline',
-    
+   
     scope: SCOPES
    
   });
@@ -98,7 +102,7 @@ function storeToken(token) {
   fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
     if (err) throw err;
     console.log('Token stored to ' + TOKEN_PATH);
-  });
+  });  
 }
 
 /**
@@ -115,6 +119,7 @@ function getChannel(auth) {
   }, function(err, response) {
     if (err) {
       console.log('The API returned an error: ' + err);
+      
       return;
     }
     var channels = response.data.items;
