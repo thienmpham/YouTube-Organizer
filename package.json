@@ -2,7 +2,7 @@
   "name": "youtube-organizer",
   "version": "1.0.0",
   "description": "",
-  "main": "script.js",
+  "main": "auth2.js",
   "directories": {
     "test": "test"
   },
