@@ -8,9 +8,10 @@ const clientId = process.env.CLIENT_ID;
 const redirectUrl = 'http://127.0.0.1:5500/YouTube-Organizer/popup.html';
 
 console.log(clientSecret)
+console.log(clientId)
 const oauth2Client = new google.auth.OAuth2(
-  clientSecret,
   clientId,
+  clientSecret,
   redirectUrl
 );
 
