@@ -24,13 +24,7 @@ app.get('/', (req, res) => res.json('Hello World'))
 var obj;
 
 // Fetching playlist data from YouTube API 
-fetch(url, { 
-    method: 'GET', 
-    headers: {
-        'Authorization': `Bearer ${access_token}`,
-        'Accept': 'application/json',
-    }
-})
+fetch(url)
     .then((res) => res.json()) // convert response into json format
     .then(data => {
         obj = data;   
