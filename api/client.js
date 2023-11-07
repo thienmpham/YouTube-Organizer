@@ -6,6 +6,7 @@ let tabNameSpan = document.querySelector('#tab-name-span')
 
 // Select the tab div 
 const videoTab = document.querySelector('.video-tab');
+const ogVideoTab = document.querySelector('#og-video-tab')
 console.log(videoTab)
 
 // Create node clone of tab div 
@@ -21,6 +22,8 @@ const main = document.querySelector('#main');
 
 
 
+
+
 // Fetching data from my endpoint to my client side 
 fetch('http://localhost:8000/api')
     .then(res => {
@@ -32,18 +35,21 @@ fetch('http://localhost:8000/api')
         let playlists = data.items;
         
         console.log(data.pageInfo.totalResults)
-        console.log(data.nextPageToken)
+   
         for (let i = 0; i < playlists.length; i++) { 
             // Create a node clone with each iteration 
+            
             videoTabClone = videoTab.cloneNode(true);
             
-            
+            videoTabClone.id = 'videoClone' + `${i + 1}`;
+
             // Append empty div to cloned div 
             main.append(videoTabClone);     
-            videoTabClone.id = 'videoClone' + `${i + 1}`;
 
             tabNameSpan.innerHTML = playlists[i].snippet.title;
             console.log(playlists[i].snippet.title)
+
+            
             
         }
    
