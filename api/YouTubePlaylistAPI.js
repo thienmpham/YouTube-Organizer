@@ -16,7 +16,7 @@ const channelId = 'UCt1sWh7fALveC7cI4oQ6ZMg';
 const nextPageToken = 'CAUQAA';
 const maxResults = '50';
 const url = `${baseUrl}?part=${part}&channelId=${channelId}&maxResults=${maxResults}&pageToken=${nextPageToken}&key=${apiKey}`;
-const url2 =  `https://youtube.googleapis.com/youtube/v3/playlists?part=snippet&channelId=UCt1sWh7fALveC7cI4oQ6ZMg&maxResults=50&pageToken=CAUQAA&key=${apiKey}`
+const url2 =  `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&channelId=UCt1sWh7fALveC7cI4oQ6ZMg&maxResults=50&pageToken=CAUQAA&key=${apiKey}`
 app.listen(port, () => console.log(`Server has started on ${port}`))
 
 app.get('/', (req, res) => res.json('Hello World'))
@@ -44,6 +44,24 @@ app.get('/api', (req, res) => {
      })
 
 
+fetch(url2) 
+    .then((res) => res.json()) // convert response into json format
+    .then(data => {
+        videos = data;   
+    }) 
+    .then (() => {
+        console.log(obj);
+       
+    })
+    
+// Send fetch results to /api endpoint 
+// using express
+app.get('/videos', (req, res) => {
+    res.json(videos);
+    console.log(nextPageToken)
+    
+
+     })
 
 
 

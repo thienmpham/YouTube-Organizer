@@ -1,3 +1,4 @@
+
 let div = document.createElement('div');
 let h1 = document.createElement('h1');
 let tabName = document.querySelector('.tab-name');
@@ -35,24 +36,30 @@ fetch('http://localhost:8000/api')
         let playlists = data.items;
         
         console.log(data.pageInfo.totalResults)
-   
+        
         for (let i = 0; i < playlists.length; i++) { 
             // Create a node clone with each iteration 
             
             videoTabClone = videoTab.cloneNode(true);
             
+           
+            
+            // Append cloned div to main
+            main.append(videoTabClone); 
             videoTabClone.id = 'videoClone' + `${i + 1}`;
-
-            // Append empty div to cloned div 
-            main.append(videoTabClone);     
+           
 
             tabNameSpan.innerHTML = playlists[i].snippet.title;
             console.log(playlists[i].snippet.title)
-
-            
+        
+            let videoListTab = document.querySelector('.video-list-tab')
+            videoListTab.innerHTML = 
+                ` <img src= ${playlists[i].snippet.thumbnails.default.url}>`
+            console.log(playlists[i].snippet.thumbnails.default.url)
             
         }
-   
+       
+        
     }).catch (error => {
         (console.log(error));
     });
